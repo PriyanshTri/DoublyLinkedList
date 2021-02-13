@@ -55,17 +55,54 @@ public class MyDoublyLinkedList implements DoublyLinkedListADT {
 
     @Override
     public void removeLast() {
+        if(!isEmpty()){
+            tail=tail.getPrevious();
+            if(tail!=null){
+                tail.setNext(null);
+            }
+            else{
+                tail=null;
+            }
+            size--;
+        }
 
     }
 
     @Override
     public boolean addAfterGivenElement(int element, int givenElement) {
-        return false;
-    }
+        boolean response=false;
+        Node temp=head;
+        Node node=new Node(element);
+        while(temp!=null){
+            if(temp.getData()==givenElement){
+                node.setNext(temp.getNext());
+                node.getNext().setPrevious(node);
+                node.setPrevious(temp);
+                temp.setNext(node);
+                size++;
+                response=true;
+                break;
 
+            }
+            temp=temp.getNext();
+        }
+
+        return response;
+    }
+//incomplete code
     @Override
     public boolean addBeforeGivenElement(int element, int givenElement) {
-        return false;
+        boolean response= false;
+        Node node=new Node(element);
+        Node temp=head;
+        while(temp!=null){
+            if(temp.getData()==element){
+
+            }
+
+            temp=temp.getNext();
+        }
+        return response;
     }
 
     @Override
@@ -76,9 +113,9 @@ public class MyDoublyLinkedList implements DoublyLinkedListADT {
             tail=node;
         }
         else{
-            Node temp=head.getNext();
+            Node temp=head;
             head=node;
-            previous=temp.getPrevious();
+            temp.setPrevious(node);
         }
         size++;
 
@@ -89,24 +126,23 @@ public class MyDoublyLinkedList implements DoublyLinkedListADT {
         Node node=new Node(element);
         if(isEmpty()){
             head=node;
-            tail=node;
         }
         else{
             node.setPrevious(tail);
             tail.setNext(node);
-            tail=node;
         }
+        tail=node;
         size++;
     }
 
     @Override
     public int first() {
-        return 0;
+        return head.getData();
     }
 
     @Override
     public int last() {
-        return 0;
+        return tail.getData();
     }
 
 }
