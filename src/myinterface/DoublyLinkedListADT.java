@@ -13,5 +13,6 @@ public interface DoublyLinkedListADT {
     void removeLast();                                              //O(1);     done
     boolean addAfterGivenElement(int element,int givenElement);     //O(N);     done
     boolean addBeforeGivenElement(int element,int givenElement);    //O(N);     done
+    //adt completed
 
 }
