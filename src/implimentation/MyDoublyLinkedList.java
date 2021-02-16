@@ -81,6 +81,9 @@ public class MyDoublyLinkedList implements DoublyLinkedListADT {
                 temp.setNext(node);
                 size++;
                 response=true;
+                if(node.getNext()==null){
+                    tail=node;
+                }
                 break;
 
             }
@@ -95,11 +98,17 @@ public class MyDoublyLinkedList implements DoublyLinkedListADT {
         boolean response= false;
         Node node=new Node(element);
         Node temp=head;
+        Node before=null;
         while(temp!=null){
             if(temp.getData()==element){
-
+                temp.setPrevious(node);
+                before.setNext(node);
+                node.setNext(temp);
+                node.setPrevious(before);
+                size++;
+                response=true;
             }
-
+            before=temp;
             temp=temp.getNext();
         }
         return response;

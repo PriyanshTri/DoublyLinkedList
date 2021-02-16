@@ -11,7 +11,7 @@ public interface DoublyLinkedListADT {
     void traverseBackward();                                        //O(N);     done
     void removeFirst();                                             //O(1);     done
     void removeLast();                                              //O(1);     done
-    boolean addAfterGivenElement(int element,int givenElement);     //O(N);
-    boolean addBeforeGivenElement(int element,int givenElement);    //O(N);
+    boolean addAfterGivenElement(int element,int givenElement);     //O(N);     done
+    boolean addBeforeGivenElement(int element,int givenElement);    //O(N);     done
 
 }
