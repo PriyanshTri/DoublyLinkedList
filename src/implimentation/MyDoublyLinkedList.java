@@ -7,12 +7,13 @@ public class MyDoublyLinkedList implements DoublyLinkedListADT {
     private int size;
     private Node previous;
     private Node tail;
-    public MyDoublyLinkedList(){
-        head=null;
-        previous=null;
-        tail=null;
-        size=0;
+    public MyDoublyLinkedList() {
+        head = null;
+        previous = null;
+        tail = null;
+        size = 0;
     }
+
     @Override
     public int size(){
         return size;
@@ -67,7 +68,7 @@ public class MyDoublyLinkedList implements DoublyLinkedListADT {
         }
 
     }
-
+//getting null pointer exception
     @Override
     public boolean addAfterGivenElement(int element, int givenElement) {
         boolean response=false;
