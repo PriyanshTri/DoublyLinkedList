@@ -33,7 +33,7 @@ public class MyDoublyLinkedList implements DoublyLinkedListADT {
     }
     public void traverseBackward(){
         Node temp=tail;
-        while(temp.getPrevious()!=null){
+        while(temp!=null){
             System.out.print(temp.getData()+" --__ ");
             temp=temp.getPrevious();
         }

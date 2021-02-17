@@ -11,10 +11,11 @@ public class Driver extends MyDoublyLinkedList {
         dl.addLast(4);
         dl.addLast(5);
         dl.traverseForward();
-        dl.size();
-        dl.isEmpty();
+        System.out.println(dl.size());
+        System.out.println(dl.isEmpty());
         dl.addAfterGivenElement(10,5);  //getting null pointer error
         dl.traverseForward();
+        dl.traverseBackward();
 
     }
 }
