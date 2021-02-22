@@ -7,6 +7,7 @@ public class MyDoublyLinkedList implements DoublyLinkedListADT {
     private int size;
     private Node previous;
     private Node tail;
+
     public MyDoublyLinkedList() {
         head = null;
         previous = null;
@@ -15,116 +16,125 @@ public class MyDoublyLinkedList implements DoublyLinkedListADT {
     }
 
     @Override
-    public int size(){
+    public int size() {
         return size;
     }
 
     @Override
     public boolean isEmpty() {
-        return head==null;
+        return head == null;
     }
-    public void traverseForward(){
-        Node temp=head;
-        while(temp!=null){
-            System.out.print( temp.getData() + " --__ " ) ;
-            temp=temp.getNext();
+
+    public void traverseForward() {
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.getData() + " --__ ");
+            temp = temp.getNext();
         }
         System.out.println("null");
     }
-    public void traverseBackward(){
-        Node temp=tail;
-        while(temp!=null){
-            System.out.print(temp.getData()+" --__ ");
-            temp=temp.getPrevious();
+
+    public void traverseBackward() {
+        Node temp = tail;
+        while (temp != null) {
+            System.out.print(temp.getData() + " --__ ");
+            temp = temp.getPrevious();
         }
         System.out.println("null");
     }
+
     //right code
     @Override
     public void removeFirst() {
-        if(!isEmpty()){
-            head=head.getNext();
-            if(head!=null){
+        if (!isEmpty()) {
+            head = head.getNext();
+            if (head != null) {
                 head.setPrevious(null);
             }
-        }
-        else{
-            tail=null;
+        } else {
+            tail = null;
         }
         size--;
     }
 
     @Override
     public void removeLast() {
-        if(!isEmpty()){
-            tail=tail.getPrevious();
-            if(tail!=null){
+        if (!isEmpty()) {
+            tail = tail.getPrevious();
+            if (tail != null) {
                 tail.setNext(null);
-            }
-            else{
-                tail=null;
+            } else {
+                tail = null;
             }
             size--;
         }
 
     }
-//getting null pointer exception
+
+    //getting null pointer exception
     @Override
     public boolean addAfterGivenElement(int element, int givenElement) {
-        boolean response=false;
-        Node temp=head;
-        Node node=new Node(element);
-        while(temp!=null){
-            if(temp.getData()==givenElement){
-                node.setNext(temp.getNext());
-                node.getNext().setPrevious(node);
-                node.setPrevious(temp);
-                temp.setNext(node);
-                size++;
-                response=true;
-                if(node.getNext()==null){
-                    tail=node;
+        boolean response = false;
+        Node node = new Node(element);
+        Node temp = head;
+        // loop to find givenelement node
+        while (temp != null) {
+            //if given node is found
+            if (temp.getData() == givenElement) {
+                if(node.getNext()!=null){
+                    node.setNext(temp.getNext());
+                    node.setPrevious(temp);
+                    temp.setNext(node);
+                    node.getNext().setPrevious(node);
+                    if(node.getNext()==null){
+                        tail=node;
+                    }
                 }
-                break;
+                else{
 
+                }
+                response = true;
+
+                size++;
+                break;
             }
-            temp=temp.getNext();
+            temp = temp.getNext();
         }
 
         return response;
     }
-//incomplete code
+
+    //incomplete code
     @Override
     public boolean addBeforeGivenElement(int element, int givenElement) {
-        boolean response= false;
-        Node node=new Node(element);
-        Node temp=head;
-        Node before=null;
-        while(temp!=null){
-            if(temp.getData()==element){
+        boolean response = false;
+        Node node = new Node(element);
+        Node temp = head;
+        Node before = null;
+        while (temp != null) {
+            if (temp.getData() == element) {
                 temp.setPrevious(node);
                 before.setNext(node);
                 node.setNext(temp);
                 node.setPrevious(before);
                 size++;
-                response=true;
+                response = true;
             }
-            before=temp;
-            temp=temp.getNext();
+            before = temp;
+            temp = temp.getNext();
         }
         return response;
     }
 
     @Override
-    public void addFirst(int element){
-        Node node=new Node(element);
-        if(isEmpty()){
-            head=node;
-            tail=node;
-        }
-        else{
-            Node temp=head;
-            head=node;
+    public void addFirst(int element) {
+        Node node = new Node(element);
+        if (isEmpty()) {
+            head = node;
+            tail = node;
+        } else {
+            Node temp = head;
+            head = node;
             temp.setPrevious(node);
         }
         size++;
@@ -132,16 +142,15 @@ public class MyDoublyLinkedList implements DoublyLinkedListADT {
     }
 
     //right program
-    public void addLast(int element){
-        Node node=new Node(element);
-        if(isEmpty()){
-            head=node;
-        }
-        else{
+    public void addLast(int element) {
+        Node node = new Node(element);
+        if (isEmpty()) {
+            head = node;
+        } else {
             node.setPrevious(tail);
             tail.setNext(node);
         }
-        tail=node;
+        tail = node;
         size++;
     }
 
